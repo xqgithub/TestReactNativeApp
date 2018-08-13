@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.explame.testreactnativeapp.R;
+import com.first.testreactnativeapp.preloadreact.ReactNativePreLoader;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,4 +61,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * @param hasFocus
+     */
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            ReactNativePreLoader.preLoad(MainActivity.this, "helloreactnative");
+        }
+    }
 }
