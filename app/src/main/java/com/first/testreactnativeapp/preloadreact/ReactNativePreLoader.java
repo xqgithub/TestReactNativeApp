@@ -12,7 +12,7 @@ import com.facebook.react.ReactRootView;
 import java.util.Map;
 
 /**
- * 预加载工具类
+ * 预加载工具类啊
  * Created by XQ on 2018/8/13.
  */
 
