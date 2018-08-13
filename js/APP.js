@@ -8,13 +8,21 @@ ToastAndroid
 } from 'react-native'
 export default class extends Component {
 
+   /**
+    * 调用原生代码
+    */
+    skipNativeCall() {
+       let phone = '13554298369';
+       NativeModules.commModule.rnCallNative(phone);
+    }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>
           Hello React Native!
         </Text>
-         <Text style={styles.text}>
+         <Text style={styles.text} onPress={this.skipNativeCall.bind(this)}>
             跳转到拨号界面
          </Text>
         <Text style={styles.text}>
