@@ -6,6 +6,8 @@ NativeModules,
 DeviceEventEmitter,
 ToastAndroid
 } from 'react-native'
+
+
 export default class extends Component {
 
    /**
@@ -16,6 +18,26 @@ export default class extends Component {
        NativeModules.commModule.rnCallNative(phone);
     }
 
+   /**
+    * 接收原生调用
+    */
+    componentDidMount(){
+         DeviceEventEmitter.addListener('nativeCallRn',(msg)=>{
+         title = "React Native界面,收到数据：" + msg;
+          ToastAndroid.show("发送成功:"+title, ToastAndroid.SHORT);
+     })
+    }
+
+       /**
+        * Callback 通信方式
+        */
+        callbackComm(msg) {
+            NativeModules.commModule.rnCallNativeFromCallback(msg,(result) => {
+                 ToastAndroid.show("CallBack收到消息:" + result, ToastAndroid.SHORT);
+            })
+        }
+
+
   render() {
     return (
       <View style={styles.container}>
@@ -25,7 +47,7 @@ export default class extends Component {
          <Text style={styles.text} onPress={this.skipNativeCall.bind(this)}>
             跳转到拨号界面
          </Text>
-        <Text style={styles.text}>
+        <Text style={styles.text} onPress={this.callbackComm.bind(this,'我是第一剑士索隆')}>
           Callback通信方式
         </Text>
          <Text style={styles.text}>

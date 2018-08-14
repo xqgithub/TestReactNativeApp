@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Activity mActivity;
     private Button btn1;
+    private Button btn2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +36,20 @@ public class MainActivity extends AppCompatActivity {
     public void initView() {
         mActivity = MainActivity.this;
         btn1 = (Button) findViewById(R.id.btn1);
+        btn2 = (Button) findViewById(R.id.btn2);
+        //跳转到RN页面
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 intentToJump(mActivity, HelloReactActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            }
+        });
+
+        //想RN发送消息
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainApplication.getReactPackage().mModule.nativeCallRn("路飞是海贼王");
             }
         });
     }

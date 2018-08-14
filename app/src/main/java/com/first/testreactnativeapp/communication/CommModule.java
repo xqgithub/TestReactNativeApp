@@ -6,6 +6,8 @@ import android.net.Uri;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
+import com.facebook.react.bridge.Callback;
 
 /**
  * Created by admin on 2018/8/13.
@@ -16,6 +18,7 @@ public class CommModule extends ReactContextBaseJavaModule {
 
     private ReactApplicationContext mContext;
     public static final String MODULE_NAME = "commModule";
+    public static final String EVENT_NAME = "nativeCallRn";
 
     /**
      * 构造方法必须实现
@@ -48,6 +51,35 @@ public class CommModule extends ReactContextBaseJavaModule {
         intent.setData(Uri.parse("tel:" + phone));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // 跳转需要添加flag, 否则报错
         mContext.startActivity(intent);
+    }
+
+    /**
+     * Native调用RN
+     * RCTDeviceEventEmitter  方式；
+     * 优点：可任意时刻传递，Native主导控制。
+     *
+     * @param msg
+     */
+    public void nativeCallRn(String msg) {
+        mContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit(EVENT_NAME, msg);
+    }
+
+    /**
+     * Callback 方式
+     * rn调用Native,并获取返回值
+     * 优点：JS调用，Native返回
+     * 缺点：CallBack为异步操作，返回时机不确定
+     *
+     * @param msg
+     * @param callback
+     */
+    @ReactMethod
+    public void rnCallNativeFromCallback(String msg, Callback callback) {
+        // 1.处理业务逻辑...
+        String result = "FromCallback：" + msg;
+        // 2.回调RN,即将处理结果返回给RN
+        callback.invoke(result);
     }
 
 
