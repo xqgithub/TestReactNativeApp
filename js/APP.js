@@ -35,7 +35,21 @@ export default class extends Component {
             NativeModules.commModule.rnCallNativeFromCallback(msg,(result) => {
                  ToastAndroid.show("CallBack收到消息:" + result, ToastAndroid.SHORT);
             })
+
         }
+    /**
+     * Promise 通信方式
+     */
+    promiseComm(msg) {
+        NativeModules.commModule.rnCallNativeFromPromise(msg).then(
+            (result) =>{
+                ToastAndroid.show("Promise收到消息:" + result, ToastAndroid.SHORT)
+            }
+        ).catch((error) =>{
+        console.log(error);
+        ToastAndroid.show("Promise通信方式error----->:" + error, ToastAndroid.SHORT);
+        });
+    }
 
 
   render() {
@@ -50,7 +64,7 @@ export default class extends Component {
         <Text style={styles.text} onPress={this.callbackComm.bind(this,'我是第一剑士索隆')}>
           Callback通信方式
         </Text>
-         <Text style={styles.text}>
+         <Text style={styles.text} onPress={this.promiseComm.bind(this,'我是第一个美女娜美')}>
           Promise通信方式
          </Text>
       </View>

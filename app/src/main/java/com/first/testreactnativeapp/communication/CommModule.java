@@ -3,11 +3,12 @@ package com.first.testreactnativeapp.communication;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
-import com.facebook.react.bridge.Callback;
 
 /**
  * Created by admin on 2018/8/13.
@@ -67,7 +68,7 @@ public class CommModule extends ReactContextBaseJavaModule {
 
     /**
      * Callback 方式
-     * rn调用Native,并获取返回值
+     * RN 调用Native,并获取返回值
      * 优点：JS调用，Native返回
      * 缺点：CallBack为异步操作，返回时机不确定
      *
@@ -80,6 +81,22 @@ public class CommModule extends ReactContextBaseJavaModule {
         String result = "FromCallback：" + msg;
         // 2.回调RN,即将处理结果返回给RN
         callback.invoke(result);
+    }
+
+    /**
+     * Promise 方式
+     * 优点：JS调用，Native返回
+     * 缺点：每次使用需要JS调用一次
+     *
+     * @param msg
+     * @param promise
+     */
+    @ReactMethod
+    public void rnCallNativeFromPromise(String msg, Promise promise) {
+        // 1.处理业务逻辑...
+        String result = "FromPromise：" + msg;
+        // 2.回调RN,即将处理结果返回给RN
+        promise.resolve(result);
     }
 
 
