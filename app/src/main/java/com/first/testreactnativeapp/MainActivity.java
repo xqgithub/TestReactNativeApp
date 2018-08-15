@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void downLoadBundle() {
         // 1.下载前检查SD卡是否存在更新包文件夹
-//        HotUpdate.checkPackage(getApplicationContext(), FileConstant.LOCAL_FOLDER);
+        HotUpdate.checkPackage(getApplicationContext(), FileConstant.LOCAL_FOLDER);
 
         downloadConfig("http://192.168.123.178/wan.zip");
     }

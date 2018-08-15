@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View,
 Text,
+Image,
 StyleSheet,
 NativeModules,
 DeviceEventEmitter,
@@ -66,6 +67,7 @@ export default class extends Component {
          <Text style={styles.text} onPress={this.promiseComm.bind(this,'我是第一个美女娜美')}>
           Promise通信方式
          </Text>
+      <Image source={require('../images/ic_1.png')} />
       </View>
     );
   }

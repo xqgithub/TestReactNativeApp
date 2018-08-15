@@ -35,8 +35,8 @@ public class HotUpdate {
         new Thread(new Runnable() {
             @Override
             public void run() {
-//                boolean result = (Boolean) ACache.get(context).getAsObject(AppConstant.FIRST_UPDATE);
-                if (true) {
+                boolean result = (Boolean) ACache.get(context).getAsObject(AppConstant.FIRST_UPDATE);
+                if (result) {
                     // 解压到根目录
                     FileUtils.decompression(FileConstant.JS_PATCH_LOCAL_FOLDER);
                     // 合并
