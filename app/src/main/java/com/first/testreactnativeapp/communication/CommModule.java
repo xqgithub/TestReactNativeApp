@@ -98,6 +98,4 @@ public class CommModule extends ReactContextBaseJavaModule {
         // 2.回调RN,即将处理结果返回给RN
         promise.resolve(result);
     }
-
-
 }
