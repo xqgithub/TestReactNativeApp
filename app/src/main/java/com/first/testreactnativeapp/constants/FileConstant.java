@@ -33,7 +33,7 @@ public class FileConstant {
     /**
      * 除第一次外，未来解压zip后的文件目录
      */
-    public static final String FUTURE_JS_PATCH_LOCAL_FOLDER = JS_PATCH_LOCAL_FOLDER + "/future";
+    public static final String FUTURE_JS_PATCH_LOCAL_FOLDER = JS_PATCH_LOCAL_FOLDER + "future";
     public static final String FUTURE_DRAWABLE_PATH = FUTURE_JS_PATCH_LOCAL_FOLDER + "/" + ZIP_NAME + "/drawable-mdpi/";
     public static final String FUTURE_PAT_PATH = FUTURE_JS_PATCH_LOCAL_FOLDER + "/wan/" + "bundle.pat";
 

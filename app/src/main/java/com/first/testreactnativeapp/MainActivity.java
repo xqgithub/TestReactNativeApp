@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         /**
          * 申请权限
          */
-        doPermissionApplication(mActivity, permissions[CALL_PHONE], CALL_PHONE);
+//        doPermissionApplication(mActivity, permissions[CALL_PHONE], CALL_PHONE);
         doPermissionApplication(mActivity, permissions[WRITE_EXTERNAL_STORAGE], WRITE_EXTERNAL_STORAGE);
     }
 

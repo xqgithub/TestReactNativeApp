@@ -60,7 +60,7 @@ public class HotUpdate {
 
         // 1.解析Asset目录下的bundle文件
         String assetsBundle = FileUtils.getJsBundleFromAssets(context);
-        String aaaaa = FileUtils.getStringFromPat(FileConstant.JS_PATCH_LOCAL_FOLDER + "/index.android.bundle");
+        String aaaaa = FileUtils.getStringFromPat(FileConstant.LOCAL_FOLDER + "/index.android.bundle");
 
         // 对比
         diff_match_patch dmp = new diff_match_patch();
