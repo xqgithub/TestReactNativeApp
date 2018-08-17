@@ -28,14 +28,15 @@ public class FileConstant {
     public static final String JS_PATCH_LOCAL_FOLDER = MainApplication.getInstance().getExternalFilesDir(null)
             + File.separator;
     public static final String LOCAL_FOLDER = JS_PATCH_LOCAL_FOLDER + ZIP_NAME;
-    public static final String DRAWABLE_PATH = JS_PATCH_LOCAL_FOLDER + ZIP_NAME + "/drawable-mdpi/";
+    public static final String DRAWABLE_PATH = JS_PATCH_LOCAL_FOLDER + ZIP_NAME + File.separator + "drawable-mdpi" + File.separator;
 
     /**
      * 除第一次外，未来解压zip后的文件目录
      */
     public static final String FUTURE_JS_PATCH_LOCAL_FOLDER = JS_PATCH_LOCAL_FOLDER + "future";
-    public static final String FUTURE_DRAWABLE_PATH = FUTURE_JS_PATCH_LOCAL_FOLDER + "/" + ZIP_NAME + "/drawable-mdpi/";
-    public static final String FUTURE_PAT_PATH = FUTURE_JS_PATCH_LOCAL_FOLDER + "/wan/" + "bundle.pat";
+    public static final String FUTURE_DRAWABLE_PATH = FUTURE_JS_PATCH_LOCAL_FOLDER + File.separator + ZIP_NAME + File.separator + "drawable-mdpi" + File.separator;
+    public static final String FUTURE_PAT_PATH = FUTURE_JS_PATCH_LOCAL_FOLDER + File.separator + ZIP_NAME + File.separator + "bundle.pat";
+    public static final String FUTURE_BUNDLE_PATH = FUTURE_JS_PATCH_LOCAL_FOLDER + File.separator + ZIP_NAME + File.separator + JS_BUNDLE_LOCAL_FILE;
 
     /**
      * zip文件
@@ -45,17 +46,17 @@ public class FileConstant {
     /**
      * 合并后的bundle文件保存路径
      */
-    public static final String JS_BUNDLE_LOCAL_PATH = JS_PATCH_LOCAL_FOLDER + "wan/" + JS_BUNDLE_LOCAL_FILE;
+    public static final String JS_BUNDLE_LOCAL_PATH = JS_PATCH_LOCAL_FOLDER + ZIP_NAME + File.separator + JS_BUNDLE_LOCAL_FILE;
 
     /**
      * .pat文件
      */
-    public static final String JS_PATCH_LOCAL_FILE = JS_PATCH_LOCAL_FOLDER + "wan/bundle.pat";
+    public static final String JS_PATCH_LOCAL_FILE = JS_PATCH_LOCAL_FOLDER + ZIP_NAME + File.separator + "bundle.pat";
 
     /**
      * 增量图片名称文件路径
      */
-    public static final String PATCH_IMG_NAMES_PATH = JS_PATCH_LOCAL_FOLDER + "wan/" + PATCH_IMG_FILE;
+    public static final String PATCH_IMG_NAMES_PATH = JS_PATCH_LOCAL_FOLDER + ZIP_NAME + File.separator + PATCH_IMG_FILE;
 
 
     /**

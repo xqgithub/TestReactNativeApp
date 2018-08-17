@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
 //    backgroundColor: '#209bf4'
-    backgroundColor: '#FF6A6A'
+//    backgroundColor: '#FF6A6A'
+    backgroundColor: '#9F79EE'
   },
   text: {
     fontSize: 20,

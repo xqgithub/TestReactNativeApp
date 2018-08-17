@@ -45,7 +45,8 @@ public class HotUpdate {
                     // 解压到future目录
                     FileUtils.decompression(FileConstant.FUTURE_JS_PATCH_LOCAL_FOLDER);
                     // 合并
-                    mergePatAndBundle();
+//                    mergePatAndBundle();
+                    mergePatAndBundle1();
                 }
                 // 删除ZIP压缩包
                 FileUtils.deleteFile(FileConstant.JS_PATCH_LOCAL_PATH);
@@ -89,11 +90,38 @@ public class HotUpdate {
     private static void mergePatAndBundle() {
 
         // 1.解析sd卡目录下的bunlde
-        String assetsBundle = FileUtils.getJsBundleFromSDCard(FileConstant.JS_BUNDLE_LOCAL_PATH);
+        String assetsBundle = FileUtils.getJsBundleFromSDCard(FileConstant.LOCAL_FOLDER + "/index.android.bundle");
         // 2.解析最新下发的.pat文件字符串
         String patcheStr = FileUtils.getStringFromPat(FileConstant.FUTURE_PAT_PATH);
         // 3.合并
         merge(patcheStr, assetsBundle);
+        // 4.添加图片
+        FileUtils.copyPatchImgs(FileConstant.FUTURE_DRAWABLE_PATH, FileConstant.DRAWABLE_PATH);
+        // 5.删除本次下发的更新文件
+        FileUtils.traversalFile(FileConstant.FUTURE_JS_PATCH_LOCAL_FOLDER);
+    }
+
+    private static void mergePatAndBundle1() {
+        // 1.解析sd卡目录下的bunlde
+        String localbundle = FileUtils.getJsBundleFromSDCard(FileConstant.LOCAL_FOLDER + "/index.android.bundle");
+        String futurebundle = FileUtils.getStringFromPat(FileConstant.FUTURE_BUNDLE_PATH);
+        // 对比
+        diff_match_patch dmp = new diff_match_patch();
+        LinkedList<diff_match_patch.Diff> diffs = dmp.diff_main(localbundle, futurebundle);
+        // 生成差异补丁包
+        LinkedList<diff_match_patch.Patch> patches = dmp.patch_make(diffs);
+        // 解析补丁包
+        String patchesStr = dmp.patch_toText(patches);
+        try {
+            // 将补丁文件写入到某个位置
+            com.first.testreactnativeapp.utils.FileUtils.writeFileFromString(FileConstant.FUTURE_PAT_PATH, patchesStr, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // 2.解析bundle当前目录下.pat文件字符串
+        String patcheStr = FileUtils.getStringFromPat(FileConstant.FUTURE_PAT_PATH);
+        // 3.合并
+        merge(patcheStr, localbundle);
         // 4.添加图片
         FileUtils.copyPatchImgs(FileConstant.FUTURE_DRAWABLE_PATH, FileConstant.DRAWABLE_PATH);
         // 5.删除本次下发的更新文件
